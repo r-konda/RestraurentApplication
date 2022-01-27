@@ -4,6 +4,9 @@ package com.example.demo.controller;
 
 
 
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +21,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.demo.model.MorningMenu;
 import com.example.demo.service.MorningMenuService;
 
-
+/*
+ * Here @Controller annotation role is create a map of model object and find a view
+ */
 @Controller
 public class MorningMenuController 
 {
-	
+	/*
+	 * @Autowired annotation enables you to inject the object dependency implicitly
+	 */
 	 @Autowired
 	 private MorningMenuService morningMenuService;
-	 
+	 /*
+		 * load the Morning Menu page
+		 */
 	 @GetMapping("/morning")
 	 public String viewHomePage(Model model)
 	 {
 		 
 	    model.addAttribute("morningList", morningMenuService.getAllMorningMenuList());
+	   
 	    return "morning"; 
 	 }
 	 
